@@ -4,8 +4,10 @@
         <h1>Editar</h1>
 
         <form @submit.prevent="editTodo(todo)">
-            <input type="text" v-model="todo.name">
-            <button type="submit">Editar</button>
+            <div class="input-group w-50">
+                <input type="text" class="form-control" v-model="todo.name">
+                <button type="submit" class="btn btn-primary">Editar</button>
+            </div>
         </form>
     </div>
 </template>

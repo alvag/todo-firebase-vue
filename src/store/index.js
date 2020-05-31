@@ -19,6 +19,9 @@ export default new Vuex.Store({
         },
         setTodo (state, payload) {
             state.todo = payload
+        },
+        removeTodo (state, payload) {
+            state.todos = state.todos.filter(x => x.id !== payload)
         }
     },
     actions: {
@@ -57,8 +60,14 @@ export default new Vuex.Store({
         addTodo ({ commit }, name) {
             db.collection('todos').add({ name })
             .then(doc => {
-                console.log(doc)
                 router.push('/')
+            })
+        },
+        deleteTodo ({ commit, dispatch }, id) {
+            db.collection('todos').doc(id).delete()
+            .then(() => {
+                // dispatch('getTodos')
+                commit('removeTodo', id)
             })
         }
     },
