@@ -1,6 +1,9 @@
 <template>
     <div>
         <h1>Inicio</h1>
+        <router-link to="/add">
+            <button>Agregar</button>
+        </router-link>
         <ul>
             <li v-for="(todo, index) in todos" :key="index">
                 {{todo.name}}

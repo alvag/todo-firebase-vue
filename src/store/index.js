@@ -53,6 +53,13 @@ export default new Vuex.Store({
                 console.log('Tarea editada')
                 router.push('/')
             })
+        },
+        addTodo ({ commit }, name) {
+            db.collection('todos').add({ name })
+            .then(doc => {
+                console.log(doc)
+                router.push('/')
+            })
         }
     },
     modules: {}
