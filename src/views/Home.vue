@@ -4,6 +4,9 @@
         <ul>
             <li v-for="(todo, index) in todos" :key="index">
                 {{todo.name}}
+                <router-link :to="{name: 'Edit', params: {id: todo.id}}">
+                    <button>Editar</button>
+                </router-link>
             </li>
         </ul>
     </div>
