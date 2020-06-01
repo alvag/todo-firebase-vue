@@ -43,7 +43,8 @@
       "parser": "babel-eslint"
     },
     "rules": {
-      "indent": "off"
+      "indent": "off",
+      "space-in-parens": "off"
     }
   },
   "browserslist": [

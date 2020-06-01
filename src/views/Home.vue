@@ -1,6 +1,12 @@
 <template>
     <div>
+        <div>
+            <router-link to="/login">Login</router-link>
+            |
+            <router-link to="/register">Registro</router-link>
+        </div>
         <h1>Inicio</h1>
+        <button class="btn btn-primary mb-2" @click="logOut">Cerrar sesión</button>
         <router-link to="/add">
             <button class="btn btn-success btn-block">Agregar</button>
         </router-link>
@@ -29,10 +35,10 @@
             this.getTodos()
         },
         methods: {
-            ...mapActions(['getTodos', 'deleteTodo'])
+            ...mapActions(['getTodos', 'deleteTodo', 'logOut'])
         },
         computed: {
-            ...mapState(['todos'])
+            ...mapState(['todos', 'user'])
         }
     }
 </script>

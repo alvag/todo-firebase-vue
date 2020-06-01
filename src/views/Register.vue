@@ -15,7 +15,7 @@
 
             <div class="text-danger mb-2">{{error}}</div>
 
-            <button class="btn btn-primary">Registrar</button>
+            <button class="btn btn-primary" :disabled="disabled">Registrar</button>
         </form>
     </div>
 </template>
@@ -37,7 +37,10 @@
             ...mapActions(['createUser'])
         },
         computed: {
-            ...mapState(['error'])
+            ...mapState(['error']),
+            disabled () {
+                return this.password !== this.password_confirm
+            }
         }
     }
 </script>
