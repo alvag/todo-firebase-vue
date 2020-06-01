@@ -18,6 +18,11 @@ const routes = [
         path: '/add',
         name: 'Add',
         component: () => import('../views/Add')
+    },
+    {
+        path: '/register',
+        name: 'Register',
+        component: () => import('../views/Register')
     }
 ]
 

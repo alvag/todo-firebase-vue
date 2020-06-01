@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { db } from '../firebase'
+import { db, auth } from '../firebase'
 import router from '../router'
 
 Vue.use(Vuex)
@@ -11,7 +11,9 @@ export default new Vuex.Store({
         todo: {
             name: '',
             id: ''
-        }
+        },
+        user: '',
+        error: ''
     },
     mutations: {
         setTodos (state, payload) {
@@ -22,6 +24,12 @@ export default new Vuex.Store({
         },
         removeTodo (state, payload) {
             state.todos = state.todos.filter(x => x.id !== payload)
+        },
+        setUser (state, payload) {
+            state.user = payload
+        },
+        setError (state, payload) {
+            state.error = payload
         }
     },
     actions: {
@@ -68,6 +76,19 @@ export default new Vuex.Store({
             .then(() => {
                 // dispatch('getTodos')
                 commit('removeTodo', id)
+            })
+        },
+        createUser ({ commit }, user) {
+            auth.createUserWithEmailAndPassword(user.email, user.password)
+            .then(res => {
+                console.log(res)
+                commit('setUser', {
+                    email: res.user.email,
+                    uid: res.user.uid
+                })
+            }).catch(error => {
+                console.log(error)
+                commit('setError', error.message)
             })
         }
     },
